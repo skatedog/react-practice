@@ -1,9 +1,15 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { ColoredMessage } from "./components/ColoredMessage";
 
 export const App = () => {
 
+
   const [num, setNum] = useState(0);
+
+  useEffect(() => {
+    alert();
+  }, [num]);
 
   const onClickButton = () => {
     setNum((prev) => prev + 1);
