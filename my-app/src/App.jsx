@@ -1,7 +1,6 @@
-import { CssModules } from "./components/CssModules";
-import { StyledComponents } from "./components/StyledComponents";
+import { Emotion } from "./components/Emotion";
 export const App = () => {
   return (
-    <StyledComponents />
+    <Emotion />
   );
 };
