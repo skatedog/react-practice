@@ -8,14 +8,27 @@ import { Item } from "./Item";
 
 export const App = () => {
 
-  const [items, setItems] = useState(["hoge", "fuga"]);
+  const [items, setItems] = useState([
+    { key: "a", text: "hoge", done: true },
+    { key: "aaa", text: "fuga", done: true },
+  ]);
 
   const keyDown = (e) => {
     if (e.key === "Enter") {
       const input = document.getElementById("input-text");
-      setItems([...items, input.value]);
+      setItems([...items, { key: items.length, text: input.value, done: false }]);
       input.value = "";
     }
+  };
+
+  const onCheck = (index) => {
+    const newItems = items.map((item, i) => {
+      if (i === index) {
+        item.done = !item.done;
+      }
+      return item;
+    });
+    setItems(newItems);
   };
 
   return (
@@ -25,9 +38,9 @@ export const App = () => {
       <TableContainer component={Paper}>
         <Table>
           <TableBody>
-            {items.map((item) => {
+            {items.map((item, index) => {
               return (
-                <Item>{item}</Item>
+                <Item key={index} index={index} done={item.done} onCheck={onCheck}>{item.text}</Item>
               )
             })}
           </TableBody>
