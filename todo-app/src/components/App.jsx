@@ -31,6 +31,12 @@ export const App = () => {
     setItems(newItems);
   };
 
+  const onClickDelete = (index) => {
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
+  }
+
   return (
     <>
       <h1>ToDo</h1>
@@ -40,7 +46,15 @@ export const App = () => {
           <TableBody>
             {items.map((item, index) => {
               return (
-                <Item key={index} index={index} done={item.done} onCheck={onCheck}>{item.text}</Item>
+                <Item
+                  key={index}
+                  index={index}
+                  done={item.done}
+                  onCheck={onCheck}
+                  onClickDelete={onClickDelete}
+                >
+                  {item.text}
+                </Item>
               )
             })}
           </TableBody>
