@@ -1,10 +1,6 @@
 import TextField from "@mui/material/TextField";
-import TableContainer from "@mui/material/TableContainer";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import Paper from '@mui/material/Paper';
 import { useState } from "react";
-import { Item } from "./Item";
+import { ToDoList } from "./ToDolist";
 
 export const App = () => {
 
@@ -36,30 +32,12 @@ export const App = () => {
     newItems.splice(index, 1);
     setItems(newItems);
   }
-
+  
   return (
     <>
       <h1>ToDo</h1>
       <TextField id="input-text" label="予定" variant="standard" onKeyDown={keyDown}></TextField>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableBody>
-            {items.map((item, index) => {
-              return (
-                <Item
-                  key={index}
-                  index={index}
-                  done={item.done}
-                  onCheck={onCheck}
-                  onClickDelete={onClickDelete}
-                >
-                  {item.text}
-                </Item>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <ToDoList items={items} onCheck={onCheck} onClickDelete={onClickDelete}></ToDoList>
     </>
   );
 };
